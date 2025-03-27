@@ -9,5 +9,3 @@ public enum Dice
     D12 = 12,
     D20 = 20
 }
-
-public record CritDamageRoll(Dice Die, int DiceQuantity, int RollResult, int BonusDamage);

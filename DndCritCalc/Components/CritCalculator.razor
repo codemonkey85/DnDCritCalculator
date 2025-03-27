@@ -1,4 +1,16 @@
-﻿<MudNumericField @bind-Value="@abilityStat"
+﻿<MudSelect T="@AttackRoll"
+           Label="Saved Attacks"
+           @bind-Value="@selectedAttackRoll"
+           @bind-Value:after="@OnSelectedAttackChanged">
+    @foreach (var attackRoll in savedAttackRolls)
+    {
+        <MudSelectItem Value="@attackRoll">
+            @attackRoll.ToString()
+        </MudSelectItem>
+    }
+</MudSelect>
+
+<MudNumericField @bind-Value="@abilityStat"
                  Label="Ability Stat"
                  Min="0"
                  Max="@int.MaxValue"
