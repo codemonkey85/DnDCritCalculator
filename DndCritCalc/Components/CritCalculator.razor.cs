@@ -2,16 +2,15 @@ namespace DndCritCalc.Components;
 
 public partial class CritCalculator
 {
-    private readonly List<string> outputLines = [];
-
     private readonly List<AttackRoll> savedAttackRolls = [];
+    private AttackRoll? selectedSavedAttackRoll;
+
     private int abilityStat = 20;
+
     private int bonusDamage = 0;
-    private int diceQuantity = 1;
-    private int rolledResult = 1;
-    private Dice selectedDie = Dice.D4;
-    private int weaponModifier = 0;
-    private AttackRoll? selectedAttackRoll;
+
+    private List<DamageDie> DamageDice = [];
+    private readonly List<string> outputLines = [];
 
     protected override async Task OnInitializedAsync()
     {
@@ -22,42 +21,58 @@ public partial class CritCalculator
     private void RollCrit()
     {
         outputLines.Clear();
-
         var abilityModifier = (abilityStat - 10) / 2;
-        var maxDamage = (int)selectedDie * diceQuantity;
-        var totalDamage = maxDamage + rolledResult + abilityModifier + weaponModifier + bonusDamage;
 
-        outputLines.Add($"Total damage: {totalDamage}");
-        outputLines.Add($"Max Damage for {diceQuantity}{selectedDie.ToString().ToLower()} = {maxDamage}");
-        outputLines.Add($"Rolled Damage: {rolledResult}");
-        outputLines.Add($"Total Modifier: {abilityModifier} + {weaponModifier} = {abilityModifier + weaponModifier}");
-        if (bonusDamage > 0)
+        Dictionary<DamageType, int> damageTotals = [];
+        foreach (var damageGroup in DamageDice.GroupBy(d => d.DamageType))
         {
-            outputLines.Add($"Bonus Damage: {bonusDamage}");
+            foreach (var damageDie in damageGroup)
+            {
+                var maxDamage = damageDie.MaxRolledDamage;
+                var totalDamage = maxDamage + damageDie.RolledResult + abilityModifier + damageDie.AttackModifier + bonusDamage;
+                if (damageTotals.ContainsKey(damageGroup.Key))
+                {
+                    damageTotals[damageGroup.Key] += totalDamage;
+                }
+                else
+                {
+                    damageTotals.Add(damageGroup.Key, totalDamage);
+                }
+            }
         }
-    }
 
-    private void AfterSelectedDieChanged()
-    {
-        if (rolledResult > (int)selectedDie)
+        foreach(var total in damageTotals)
         {
-            rolledResult = (int)selectedDie;
+            outputLines.Add($"Total {total.Key} damage: {total.Value}");
         }
+
+        //var abilityModifier = (abilityStat - 10) / 2;
+        //var maxDamage = (int)selectedDie * diceQuantity;
+        //var totalDamage = maxDamage + rolledResult + abilityModifier + attackModifier + bonusDamage;
+        //outputLines.Add($"Total damage: {totalDamage}");
+        //outputLines.Add($"Max Damage for {diceQuantity}{selectedDie.ToString().ToLower()} = {maxDamage}");
+        //outputLines.Add($"Rolled Damage: {rolledResult}");
+        //outputLines.Add($"Total Modifier: {abilityModifier} + {attackModifier} = {abilityModifier + attackModifier}");
+        //if (bonusDamage > 0)
+        //{
+        //    outputLines.Add($"Bonus Damage: {bonusDamage}");
+        //}
     }
 
     private async Task LoadSavedAttackRolls()
     {
         savedAttackRolls.Clear();
 
-        savedAttackRolls.Add(new("Warhammer +2", Dice.D10, 1, 2));
+        savedAttackRolls.Add(new("Warhammer +2", [new() { Die = Dice.D10, DamageType = DamageType.Bludgeoning, Quantity = 1, AttackModifier = 2 }]));
     }
 
     private void OnSelectedAttackChanged()
     {
-        if (selectedAttackRoll is null)
+        if (selectedSavedAttackRoll is null)
         {
             return;
         }
-        (_, selectedDie, diceQuantity, weaponModifier) = selectedAttackRoll;
+
+        DamageDice = selectedSavedAttackRoll.DamageDice;
     }
 }

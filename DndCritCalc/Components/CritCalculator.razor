@@ -1,6 +1,6 @@
 ﻿<MudSelect T="@AttackRoll"
            Label="Saved Attacks"
-           @bind-Value="@selectedAttackRoll"
+           @bind-Value="@selectedSavedAttackRoll"
            @bind-Value:after="@OnSelectedAttackChanged">
     @foreach (var attackRoll in savedAttackRolls)
     {
@@ -14,43 +14,18 @@
                  Label="Ability Stat"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text"/>
-
-<MudNumericField @bind-Value="@weaponModifier"
-                 Label="Weapon Modifier"
-                 Min="0"
-                 Max="@int.MaxValue"
-                 Variant="Variant.Text"/>
-
-<MudNumericField @bind-Value="@rolledResult"
-                 Label="Rolled Result"
-                 Min="0"
-                 Max="@((int)selectedDie)"
-                 Variant="Variant.Text"/>
+                 Variant="Variant.Text" />
 
 <MudNumericField @bind-Value="@bonusDamage"
                  Label="Bonus Damage"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text"/>
+                 Variant="Variant.Text" />
 
-<MudSelect T="@Dice"
-           @bind-Value="@selectedDie"
-           @bind-Value:after="@AfterSelectedDieChanged"
-           Label="Dice">
-    @foreach (var die in Enum.GetValues<Dice>())
-    {
-        <MudSelectItem Value="@die">
-            @die.ToString()
-        </MudSelectItem>
-    }
-</MudSelect>
-
-<MudNumericField @bind-Value="@diceQuantity"
-                 Label="Quantity"
-                 Min="1"
-                 Max="@int.MaxValue"
-                 Variant="Variant.Text"/>
+@foreach (var damageDie in DamageDice)
+{
+    <DamageDieComponent DamageDie="@damageDie" />
+}
 
 <MudButton OnClick="@RollCrit"
            Variant="@Variant.Filled"
