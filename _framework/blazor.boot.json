@@ -1,9 +1,9 @@
 {
   "mainAssemblyName": "DndCritCalc",
   "resources": {
-    "hash": "sha256-MtRxdaQ3kLBRzSkT+T6jAYgv5/O2tJKScsb91NoppzE=",
+    "hash": "sha256-bru9r8g5RBDXKc73zQtGJpZesjqoPXndoe/i+hEYKp8=",
     "fingerprinting": {
-      "DndCritCalc.esznj10x8c.wasm": "DndCritCalc.wasm",
+      "DndCritCalc.2ed4kfkrld.wasm": "DndCritCalc.wasm",
       "Microsoft.AspNetCore.Components.Forms.pl7ta3gmle.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.wbzpo47a2e.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.qqvmyb7bjg.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -69,7 +69,7 @@
       "System.Runtime.InteropServices.JavaScript.h0o384gvzn.wasm": "sha256-rwtckCDh2hrAqX7g10ShSPlmBHiMU4i3ALHrPCgasio="
     },
     "assembly": {
-      "DndCritCalc.esznj10x8c.wasm": "sha256-7usAq7lePKR/7FucSp22S01IGdAB4AV79bClq/mVJXc=",
+      "DndCritCalc.2ed4kfkrld.wasm": "sha256-ykxq8Qb/h3A/Djx6ILs208DYmulNM9Uk+0GeBtFS2p0=",
       "Microsoft.AspNetCore.Components.Forms.pl7ta3gmle.wasm": "sha256-vYHM//U+oOsEuTYn0hhLb9oFUGo3HXUaNM366EQL044=",
       "Microsoft.AspNetCore.Components.wbzpo47a2e.wasm": "sha256-HBd2T7wmkgl4mjv4/3FgOFiNXCJ771O8ta/bNMl/c7Q=",
       "Microsoft.AspNetCore.Components.Web.qqvmyb7bjg.wasm": "sha256-Mui1yiZvGCY10AzYu5TPkgJbFwssLc//Ixh89PD1JFY=",
