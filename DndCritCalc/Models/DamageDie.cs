@@ -2,11 +2,11 @@
 
 public class DamageDie
 {
-    public Dice Die { get; set; }
+    public Dice Die { get; set; } = Dice.D4;
 
-    public DamageType DamageType { get; set; }
+    public DamageType DamageType { get; set; } = DamageType.Bludgeoning;
 
-    public int Quantity { get; set; }
+    public int Quantity { get; set; } = 1;
 
     public int AttackModifier { get; set; }
 

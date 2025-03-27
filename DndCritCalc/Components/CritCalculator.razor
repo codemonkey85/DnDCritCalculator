@@ -1,8 +1,7 @@
 ﻿<MudStack>
     <MudSelect T="@AttackRoll"
                Label="Saved Attacks"
-               @bind-Value="@selectedSavedAttackRoll"
-               @bind-Value:after="@OnSelectedAttackChanged">
+               @bind-Value="@selectedSavedAttackRoll">
         @foreach (var attackRoll in savedAttackRolls)
         {
             <MudSelectItem Value="@attackRoll">
@@ -10,6 +9,14 @@
             </MudSelectItem>
         }
     </MudSelect>
+
+    <MudButton OnClick="@OnSelectedAttackChanged"
+               Variant="@Variant.Filled"
+               Color="@Color.Primary"
+               ButtonType="@ButtonType.Button"
+               StartIcon="@Icons.Material.Filled.Download">
+        Load Selected Saved Attack
+    </MudButton>
 
     <MudNumericField @bind-Value="@abilityStat"
                      Label="Ability Stat"
@@ -23,12 +30,22 @@
                      ReadOnly
                      HideSpinButtons/>
 
-    @foreach (var damageDie in damageDice)
+    @foreach (var (index, damageDie) in damageDice.Index())
     {
+        var localIndex = index;
         <MudPaper Class="pa-5 ma-5">
-            <DamageDieComponent DamageDie="@damageDie"/>
+            <DamageDieComponent DamageDie="@damageDie"
+                                OnRemove="@(() => RemoveDamageDie(localIndex))"/>
         </MudPaper>
     }
+
+    <MudButton OnClick="@AddDamageDice"
+               Variant="@Variant.Filled"
+               Color="@Color.Default"
+               ButtonType="@ButtonType.Button"
+               StartIcon="@Icons.Material.Filled.Add">
+        Add Damage Dice
+    </MudButton>
 
     <MudButton OnClick="@RollCrit"
                Variant="@Variant.Filled"

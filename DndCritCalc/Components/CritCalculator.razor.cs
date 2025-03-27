@@ -18,6 +18,10 @@ public partial class CritCalculator
         await LoadSavedAttackRolls();
     }
 
+    private void AddDamageDice() => damageDice.Add(new());
+
+    private void RemoveDamageDie(int index) => damageDice.RemoveAt(index);
+
     private void RollCrit()
     {
         outputLines.Clear();
@@ -83,6 +87,7 @@ public partial class CritCalculator
             return;
         }
 
-        damageDice = selectedSavedAttackRoll.DamageDice;
+        damageDice.Clear();
+        damageDice.AddRange(selectedSavedAttackRoll.DamageDice);
     }
 }
