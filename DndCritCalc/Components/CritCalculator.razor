@@ -1,1 +1,13 @@
-﻿
+﻿<MudButton OnClick="@RollCrit"
+           Variant="@Variant.Filled"
+           Color="@Color.Primary"
+           ButtonType="@ButtonType.Button">
+    Roll Crit
+</MudButton>
+
+@if (damageOutput is { Length: > 0 })
+{
+    <MudText>
+        @damageOutput
+    </MudText>
+}
