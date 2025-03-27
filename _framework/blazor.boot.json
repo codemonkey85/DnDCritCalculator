@@ -1,9 +1,9 @@
 {
   "mainAssemblyName": "DndCritCalc",
   "resources": {
-    "hash": "sha256-6xEFwuZriJg1454f7v5NVUdYA8oAUqmBEqnTXDYZpUk=",
+    "hash": "sha256-rrpc/PsaFDykvkRumJ642od/wN6lr8EgcydenRSCN5U=",
     "fingerprinting": {
-      "DndCritCalc.p7p7xi3sj3.wasm": "DndCritCalc.wasm",
+      "DndCritCalc.onlat5g714.wasm": "DndCritCalc.wasm",
       "Microsoft.AspNetCore.Components.Forms.pl7ta3gmle.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.n8mj700bru.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.qqvmyb7bjg.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -24,7 +24,7 @@
       "MudBlazor.463xx2bqfz.wasm": "MudBlazor.wasm",
       "System.Collections.Concurrent.0tgwur0xpo.wasm": "System.Collections.Concurrent.wasm",
       "System.Collections.Immutable.qkselzef5f.wasm": "System.Collections.Immutable.wasm",
-      "System.Collections.tmq461el8t.wasm": "System.Collections.wasm",
+      "System.Collections.4su06rxk8x.wasm": "System.Collections.wasm",
       "System.ComponentModel.Annotations.n6qisl94dx.wasm": "System.ComponentModel.Annotations.wasm",
       "System.ComponentModel.Primitives.rw4z8rhawn.wasm": "System.ComponentModel.Primitives.wasm",
       "System.ComponentModel.TypeConverter.xgda3lmf82.wasm": "System.ComponentModel.TypeConverter.wasm",
@@ -72,7 +72,7 @@
       "System.Runtime.InteropServices.JavaScript.h0o384gvzn.wasm": "sha256-rwtckCDh2hrAqX7g10ShSPlmBHiMU4i3ALHrPCgasio="
     },
     "assembly": {
-      "DndCritCalc.p7p7xi3sj3.wasm": "sha256-ZfR9dY+uUDdpTQeN5MHwDgxC2NlWnG05Q3qHnkKpw30=",
+      "DndCritCalc.onlat5g714.wasm": "sha256-3EL2y3ZDFEuNGxygFQmE4Vm2fXuCznudZXkg1MdPXKw=",
       "Microsoft.AspNetCore.Components.Forms.pl7ta3gmle.wasm": "sha256-vYHM//U+oOsEuTYn0hhLb9oFUGo3HXUaNM366EQL044=",
       "Microsoft.AspNetCore.Components.n8mj700bru.wasm": "sha256-qeHuZ03LO3jO/p0wlhER4F4+tGintdTj1FILNA5vPfs=",
       "Microsoft.AspNetCore.Components.Web.qqvmyb7bjg.wasm": "sha256-Mui1yiZvGCY10AzYu5TPkgJbFwssLc//Ixh89PD1JFY=",
@@ -93,7 +93,7 @@
       "MudBlazor.463xx2bqfz.wasm": "sha256-tDgC8Qx5jv7SwkUrWWxN5nIAaIM09sJTGMPtrc0yWnA=",
       "System.Collections.Concurrent.0tgwur0xpo.wasm": "sha256-7HiJn1BbREyfRwSY2b0h+kt9er1oQTx0qSkpRCuN4tE=",
       "System.Collections.Immutable.qkselzef5f.wasm": "sha256-KsniSxDPm65nnbHgIPvfnnmvqbQwfmIdLx1J+rpN9rc=",
-      "System.Collections.tmq461el8t.wasm": "sha256-1enR41/h7vYIvHe+ByhMcgkSEx39MMNyukttIxJU96Y=",
+      "System.Collections.4su06rxk8x.wasm": "sha256-1L1D6zs5Pbt92mPIb6lWOGEs+th9Hwwkcm7+7k/5R/E=",
       "System.ComponentModel.Annotations.n6qisl94dx.wasm": "sha256-8Qq0teEKrOunDa20wNJkgAeMDiK00xGu4u4TcpblInI=",
       "System.ComponentModel.Primitives.rw4z8rhawn.wasm": "sha256-ZRiQvQbQCTf/owRxLqKJcVTQ63T1Y1KOhJnEY+rd7iI=",
       "System.ComponentModel.TypeConverter.xgda3lmf82.wasm": "sha256-sdk0kqGwdzs2IKBe/j6a84di7Gb8/+dFMvoxBz6RfxI=",
