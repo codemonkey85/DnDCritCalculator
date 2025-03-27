@@ -1,3 +1,44 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<MudThemeProvider @ref="@mudThemeProvider"
+                  @bind-IsDarkMode="@isDarkMode"/>
+<MudPopoverProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Dense>
+        <MudText Typo="@Typo.h4">
+            @Constants.AppTitle
+        </MudText>
+        <MudSpacer/>
+        <MudStack Row>
+            <MudSwitch @bind-Value="@isDarkMode"
+                       Color="@Color.Primary"
+                       Label="@(isDarkMode
+                                  ? "Dark"
+                                  : "Light")"/>
+            <MudButton Class="d-none d-md-flex"
+                       EndIcon="@Icons.Custom.Brands.GitHub"
+                       Href="@GitHubRepoLink"
+                       Target="_blank"
+                       title="@GitHubTooltip"
+                       Color="@Color.Inherit"
+                       Variant="@Variant.Outlined">
+                Source code on GitHub
+            </MudButton>
+            <MudIconButton Class="d-md-none"
+                           Icon="@Icons.Custom.Brands.GitHub"
+                           Href="@GitHubRepoLink"
+                           Target="_blank"
+                           title="@GitHubTooltip"
+                           Color="@Color.Inherit"
+                           Variant="@Variant.Outlined"/>
+        </MudStack>
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
