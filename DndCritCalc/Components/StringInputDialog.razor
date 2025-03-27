@@ -1,0 +1,24 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="input"
+                      Label="@InputHint"
+                      FullWidth/>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel"
+                   Variant="@Variant.Filled"
+                   Color="Color.Secondary"
+                   ButtonType="@ButtonType.Button"
+                   StartIcon="@Icons.Material.Filled.Cancel">
+            Cancel
+        </MudButton>
+        <MudButton OnClick="Submit"
+                   Variant="@Variant.Filled"
+                   Color="Color.Primary"
+                   ButtonType="@ButtonType.Button"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Disabled="@(input is not { Length: > 0 })">
+            OK
+        </MudButton>
+    </DialogActions>
+</MudDialog>

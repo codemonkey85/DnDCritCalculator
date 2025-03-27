@@ -16,7 +16,8 @@
                Variant="@Variant.Filled"
                Color="@Color.Primary"
                ButtonType="@ButtonType.Button"
-               StartIcon="@Icons.Material.Filled.Download">
+               StartIcon="@Icons.Material.Filled.Download"
+               Disabled="@(selectedSavedAttackRoll is null)">
         Load Selected Saved Attack
     </MudButton>
 
@@ -24,7 +25,8 @@
                Variant="@Variant.Filled"
                Color="@Color.Error"
                ButtonType="@ButtonType.Button"
-               StartIcon="@Icons.Material.Filled.Delete">
+               StartIcon="@Icons.Material.Filled.Delete"
+               Disabled="@(selectedSavedAttackRoll is null)">
         Remove Selected Saved Attack
     </MudButton>
 

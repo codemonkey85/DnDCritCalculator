@@ -1,18 +1,15 @@
-using System.Text.Json;
-
 namespace DndCritCalc.Components;
 
 public partial class CritCalculator
 {
+    private readonly List<DamageDie> damageDice = [];
     private readonly List<string> outputLines = [];
     private readonly List<AttackRoll> savedAttackRolls = [];
 
     private int abilityStat = 20;
 
-    private List<DamageDie> damageDice = [];
-    private AttackRoll? selectedSavedAttackRoll;
-
     private MudSelect<AttackRoll>? savedAttackRollsSelect;
+    private AttackRoll? selectedSavedAttackRoll;
 
     private int AbilityModifier => (abilityStat - 10) / 2;
 
@@ -63,8 +60,25 @@ public partial class CritCalculator
 
     private async Task SaveCurrentAttackRoll()
     {
-        var name = "Custom Attack";
-        var newAttackRoll = new AttackRoll(name, damageDice);
+        var parameters = new DialogParameters { { nameof(StringInputDialog.InputHint), "Input a name" } };
+        var options = new DialogOptions { CloseOnEscapeKey = false, CloseButton = false, BackdropClick = false };
+        var dialog = await DialogService.ShowAsync<StringInputDialog>("Save Attack Roll", parameters, options);
+        var result = await dialog.Result;
+
+        if (result is null || result.Canceled)
+        {
+            return;
+        }
+
+        var name = result.Data?.ToString() ?? string.Empty;
+        if (name is not { Length: > 0 })
+        {
+            return;
+        }
+
+        var newAttackRoll = new AttackRoll(name, []);
+        newAttackRoll.DamageDice.AddRange(damageDice);
+
         savedAttackRolls.Add(newAttackRoll);
         await LocalStorage.SetItemAsStringAsync(Constants.SavedAttackRollsStorageKey, JsonSerializer.Serialize(savedAttackRolls));
         await LoadSavedAttackRolls();
