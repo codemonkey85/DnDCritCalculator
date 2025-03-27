@@ -1,4 +1,4 @@
-﻿global using System.Text;
+﻿global using Blazored.LocalStorage;
 global using DndCritCalc;
 global using DndCritCalc.Models;
 global using Microsoft.AspNetCore.Components.Web;

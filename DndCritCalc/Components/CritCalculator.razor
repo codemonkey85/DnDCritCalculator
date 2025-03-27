@@ -1,6 +1,8 @@
 ﻿<MudStack>
     <MudSelect T="@AttackRoll"
                Label="Saved Attacks"
+               Clearable
+               @ref="@savedAttackRollsSelect"
                @bind-Value="@selectedSavedAttackRoll">
         @foreach (var attackRoll in savedAttackRolls)
         {
@@ -10,12 +12,20 @@
         }
     </MudSelect>
 
-    <MudButton OnClick="@OnSelectedAttackChanged"
+    <MudButton OnClick="@LoadSelectedSavedAttackRoll"
                Variant="@Variant.Filled"
                Color="@Color.Primary"
                ButtonType="@ButtonType.Button"
                StartIcon="@Icons.Material.Filled.Download">
         Load Selected Saved Attack
+    </MudButton>
+
+    <MudButton OnClick="@RemoveSelectedSavedAttackRoll"
+               Variant="@Variant.Filled"
+               Color="@Color.Error"
+               ButtonType="@ButtonType.Button"
+               StartIcon="@Icons.Material.Filled.Delete">
+        Remove Selected Saved Attack
     </MudButton>
 
     <MudNumericField @bind-Value="@abilityStat"
@@ -45,6 +55,14 @@
                ButtonType="@ButtonType.Button"
                StartIcon="@Icons.Material.Filled.Add">
         Add Damage Dice
+    </MudButton>
+
+    <MudButton OnClick="@SaveCurrentAttackRoll"
+               Variant="@Variant.Filled"
+               Color="@Color.Secondary"
+               ButtonType="@ButtonType.Button"
+               StartIcon="@Icons.Material.Filled.Save">
+        Save Current Attack Roll
     </MudButton>
 
     <MudButton OnClick="@RollCrit"

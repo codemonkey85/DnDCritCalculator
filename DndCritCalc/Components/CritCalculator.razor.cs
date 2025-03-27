@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace DndCritCalc.Components;
 
 public partial class CritCalculator
@@ -9,6 +11,8 @@ public partial class CritCalculator
 
     private List<DamageDie> damageDice = [];
     private AttackRoll? selectedSavedAttackRoll;
+
+    private MudSelect<AttackRoll>? savedAttackRollsSelect;
 
     private int AbilityModifier => (abilityStat - 10) / 2;
 
@@ -59,28 +63,30 @@ public partial class CritCalculator
 
     private async Task SaveCurrentAttackRoll()
     {
-        var newAttackRoll = new AttackRoll("Custom Attack", damageDice);
+        var name = "Custom Attack";
+        var newAttackRoll = new AttackRoll(name, damageDice);
+        savedAttackRolls.Add(newAttackRoll);
+        await LocalStorage.SetItemAsStringAsync(Constants.SavedAttackRollsStorageKey, JsonSerializer.Serialize(savedAttackRolls));
+        await LoadSavedAttackRolls();
     }
 
     private async Task LoadSavedAttackRolls()
     {
         savedAttackRolls.Clear();
+        var storedValuesJson = await LocalStorage.GetItemAsStringAsync(Constants.SavedAttackRollsStorageKey);
+        if (string.IsNullOrWhiteSpace(storedValuesJson))
+        {
+            return;
+        }
 
-        savedAttackRolls.Add(new("Warhammer +2",
-        [
-            new()
-            {
-                Die = Dice.D10,
-                DamageType = DamageType.Bludgeoning,
-                Quantity = 1,
-                AttackModifier = 2,
-                IncludeAbilityModifier = true,
-                IncludeAttackModifier = true
-            }
-        ]));
+        var storedValues = JsonSerializer.Deserialize<List<AttackRoll>>(storedValuesJson);
+        if (storedValues is not null)
+        {
+            savedAttackRolls.AddRange(storedValues);
+        }
     }
 
-    private void OnSelectedAttackChanged()
+    private void LoadSelectedSavedAttackRoll()
     {
         if (selectedSavedAttackRoll is null)
         {
@@ -89,5 +95,21 @@ public partial class CritCalculator
 
         damageDice.Clear();
         damageDice.AddRange(selectedSavedAttackRoll.DamageDice);
+    }
+
+    private async Task RemoveSelectedSavedAttackRoll()
+    {
+        if (selectedSavedAttackRoll is null)
+        {
+            return;
+        }
+
+        savedAttackRolls.Remove(selectedSavedAttackRoll);
+        await LocalStorage.SetItemAsStringAsync(Constants.SavedAttackRollsStorageKey, JsonSerializer.Serialize(savedAttackRolls));
+        await LoadSavedAttackRolls();
+        if (savedAttackRollsSelect is not null)
+        {
+            await savedAttackRollsSelect.ClearAsync();
+        }
     }
 }
