@@ -2,25 +2,25 @@
                  Label="Ability Stat"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudNumericField @bind-Value="@weaponModifier"
                  Label="Weapon Modifier"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudNumericField @bind-Value="@rolledResult"
                  Label="Rolled Result"
                  Min="0"
                  Max="@((int)selectedDie)"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudNumericField @bind-Value="@bonusDamage"
                  Label="Bonus Damage"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudSelect T="@Dice"
            @bind-Value="@selectedDie"
@@ -38,7 +38,7 @@
                  Label="Quantity"
                  Min="1"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudButton OnClick="@RollCrit"
            Variant="@Variant.Filled"
@@ -48,9 +48,16 @@
     Roll Critical Hit Damage
 </MudButton>
 
-@if (damageOutput is { Length: > 0 })
+@if (outputLines is { Count: > 0 })
 {
-    <MudText>
-        @damageOutput
+    <MudText Class="totalDamageDisplay">
+        @outputLines.First()
     </MudText>
+
+    @foreach (var outputLine in outputLines.Skip(1))
+    {
+        <MudText>
+            @outputLine
+        </MudText>
+    }
 }

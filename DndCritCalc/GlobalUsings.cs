@@ -1,4 +1,5 @@
-﻿global using DndCritCalc;
+﻿global using System.Text;
+global using DndCritCalc;
 global using DndCritCalc.Models;
 global using Microsoft.AspNetCore.Components.Web;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
