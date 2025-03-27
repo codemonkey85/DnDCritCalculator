@@ -10,6 +10,4 @@ public enum Dice
     D20 = 20
 }
 
-public record DiceRoll(Dice Dice, int Quantity);
-
-public record CritDamageRoll(List<DiceRoll> DiceRolls, int RolledDamage, int BonusDamage);
+public record CritDamageRoll(Dice Die, int DiceQuantity, int RollResult, int BonusDamage);

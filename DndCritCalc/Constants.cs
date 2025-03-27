@@ -2,5 +2,5 @@
 
 public static class Constants
 {
-    public const string AppTitle = "D&D Crit Calculator";
+    public const string AppTitle = "D&D Critical Hit Calculator";
 }
