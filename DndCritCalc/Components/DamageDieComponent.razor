@@ -11,7 +11,7 @@
 
 <MudSelect T="@DamageType"
            @bind-Value="@DamageDie.DamageType"
-           Label="Dice">
+           Label="Damage Type">
     @foreach (var dt in Enum.GetValues<DamageType>())
     {
         <MudSelectItem Value="@dt">
@@ -24,15 +24,29 @@
                  @bind-Value="@DamageDie.Quantity"
                  Min="1"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudNumericField Label="Attack Modifier"
                  @bind-Value="@DamageDie.AttackModifier"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
 <MudNumericField Label="Rolled Result"
                  @bind-Value="@DamageDie.RolledResult"
                  Min="0"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
+
+<MudSwitch Label="Include Ability Modifier"
+           @bind-Value="@DamageDie.IncludeAbilityModifier"
+           Color="@Color.Primary"/>
+
+<MudSwitch Label="Include Attack Modifier"
+           @bind-Value="@DamageDie.IncludeAttackModifier"
+           Color="@Color.Primary"/>
+
+<MudNumericField @bind-Value="@DamageDie.BonusDamage"
+                 Label="Bonus Damage"
+                 Min="0"
+                 Max="@int.MaxValue"
+                 Variant="Variant.Text"/>

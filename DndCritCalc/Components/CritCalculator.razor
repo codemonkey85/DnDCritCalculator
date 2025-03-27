@@ -5,7 +5,7 @@
     @foreach (var attackRoll in savedAttackRolls)
     {
         <MudSelectItem Value="@attackRoll">
-            @attackRoll.ToString()
+            @attackRoll.AttackName
         </MudSelectItem>
     }
 </MudSelect>
@@ -14,17 +14,11 @@
                  Label="Ability Stat"
                  Min="0"
                  Max="@int.MaxValue"
-                 Variant="Variant.Text" />
+                 Variant="Variant.Text"/>
 
-<MudNumericField @bind-Value="@bonusDamage"
-                 Label="Bonus Damage"
-                 Min="0"
-                 Max="@int.MaxValue"
-                 Variant="Variant.Text" />
-
-@foreach (var damageDie in DamageDice)
+@foreach (var damageDie in damageDice)
 {
-    <DamageDieComponent DamageDie="@damageDie" />
+    <DamageDieComponent DamageDie="@damageDie"/>
 }
 
 <MudButton OnClick="@RollCrit"
@@ -37,11 +31,7 @@
 
 @if (outputLines is { Count: > 0 })
 {
-    <MudText Class="totalDamageDisplay">
-        @outputLines.First()
-    </MudText>
-
-    @foreach (var outputLine in outputLines.Skip(1))
+    @foreach (var outputLine in outputLines)
     {
         <MudText>
             @outputLine

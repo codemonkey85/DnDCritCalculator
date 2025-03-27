@@ -1,5 +1,4 @@
-﻿
-namespace DndCritCalc.Models;
+﻿namespace DndCritCalc.Models;
 
 public class DamageDie
 {
@@ -12,6 +11,12 @@ public class DamageDie
     public int AttackModifier { get; set; }
 
     public int RolledResult { get; set; } = 1;
+
+    public int BonusDamage { get; set; }
+
+    public bool IncludeAbilityModifier { get; set; }
+
+    public bool IncludeAttackModifier { get; set; }
 
     public int MaxRolledDamage => (int)Die * Quantity;
 }
