@@ -1,40 +1,50 @@
-﻿<MudSelect T="@AttackRoll"
-           Label="Saved Attacks"
-           @bind-Value="@selectedSavedAttackRoll"
-           @bind-Value:after="@OnSelectedAttackChanged">
-    @foreach (var attackRoll in savedAttackRolls)
+﻿<MudStack>
+    <MudSelect T="@AttackRoll"
+               Label="Saved Attacks"
+               @bind-Value="@selectedSavedAttackRoll"
+               @bind-Value:after="@OnSelectedAttackChanged">
+        @foreach (var attackRoll in savedAttackRolls)
+        {
+            <MudSelectItem Value="@attackRoll">
+                @attackRoll.AttackName
+            </MudSelectItem>
+        }
+    </MudSelect>
+
+    <MudNumericField @bind-Value="@abilityStat"
+                     Label="Ability Stat"
+                     Min="0"
+                     Max="@int.MaxValue"
+                     Variant="Variant.Text"/>
+
+    <MudNumericField Value="@AbilityModifier"
+                     Label="Ability Modifier"
+                     Variant="Variant.Text"
+                     ReadOnly
+                     HideSpinButtons/>
+
+    @foreach (var damageDie in damageDice)
     {
-        <MudSelectItem Value="@attackRoll">
-            @attackRoll.AttackName
-        </MudSelectItem>
+        <MudPaper Class="pa-5 ma-5">
+            <DamageDieComponent DamageDie="@damageDie"/>
+        </MudPaper>
     }
-</MudSelect>
 
-<MudNumericField @bind-Value="@abilityStat"
-                 Label="Ability Stat"
-                 Min="0"
-                 Max="@int.MaxValue"
-                 Variant="Variant.Text"/>
+    <MudButton OnClick="@RollCrit"
+               Variant="@Variant.Filled"
+               Color="@Color.Primary"
+               ButtonType="@ButtonType.Button"
+               StartIcon="@Icons.Material.Filled.Calculate">
+        Roll Critical Hit Damage
+    </MudButton>
 
-@foreach (var damageDie in damageDice)
-{
-    <DamageDieComponent DamageDie="@damageDie"/>
-}
-
-<MudButton OnClick="@RollCrit"
-           Variant="@Variant.Filled"
-           Color="@Color.Primary"
-           ButtonType="@ButtonType.Button"
-           StartIcon="@Icons.Material.Filled.Calculate">
-    Roll Critical Hit Damage
-</MudButton>
-
-@if (outputLines is { Count: > 0 })
-{
-    @foreach (var outputLine in outputLines)
+    @if (outputLines is { Count: > 0 })
     {
-        <MudText>
-            @outputLine
-        </MudText>
+        @foreach (var outputLine in outputLines)
+        {
+            <MudText>
+                @outputLine
+            </MudText>
+        }
     }
-}
+</MudStack>

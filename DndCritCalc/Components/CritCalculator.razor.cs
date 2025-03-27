@@ -53,6 +53,11 @@ public partial class CritCalculator
         }
     }
 
+    private async Task SaveCurrentAttackRoll()
+    {
+        var newAttackRoll = new AttackRoll("Custom Attack", damageDice);
+    }
+
     private async Task LoadSavedAttackRolls()
     {
         savedAttackRolls.Clear();
